@@ -27,6 +27,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 """"" Filetypes ========================
+""""""" Config
+Plugin 'editorconfig/editorconfig-vim'
 
 """"""" Ruby
 Plugin 'vim-ruby/vim-ruby'
@@ -71,6 +73,7 @@ Plugin 'nono/vim-handlebars'
 """"" Utilities ========================
 Plugin 'honza/vim-snippets'
 Plugin 'mileszs/ack.vim'
+  let g:ackprg = 'ag --nogroup --nocolor --column'
 
 Plugin 'scrooloose/syntastic' " Syntax highlighting
   let g:syntastic_mode_map = { "mode": "active",
@@ -109,7 +112,7 @@ Plugin 'kien/ctrlp.vim'
   let g:ctrlp_use_caching = 0            " don't cache, we want new list immediately each time
   let g:ctrlp_max_files = 0              " no restriction on results/file list
   let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|gitkeep)$',
+        \ 'dir':  '\v[\/](node_modules|\.(git|hg|svn|gitkeep))$',
         \ 'file': '\v\.(exe|so|dll|log|gif|jpg|jpeg|png|psd|DS_Store|ctags|gitattributes)$'
         \ }
 
