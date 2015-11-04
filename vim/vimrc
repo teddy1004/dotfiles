@@ -19,6 +19,8 @@
 set nocompatible " required for Vundle
 filetype off     " required for Vundle
 
+autocmd filetype crontab setlocal nobackup nowritebackup
+
 " Initialize vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -27,13 +29,14 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 """"" Filetypes ========================
+"" Plugin 'Valloric/YouCompleteMe'
+
 """"""" Config
 Plugin 'editorconfig/editorconfig-vim'
 
 """"""" Ruby
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-rails'
 
 """"""" Elixir
 Plugin 'elixir-lang/vim-elixir'
@@ -42,8 +45,6 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'fatih/vim-go'
 
 """"""" JavaScript
-Plugin 'elzr/vim-json'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'Shutnik/jshint2.vim'
@@ -62,9 +63,6 @@ Plugin 'chase/vim-ansible-yaml'
 """"""" Dockerfile
 Plugin 'ekalinin/Dockerfile.vim'
 
-""""""" CoffeeScript
-Plugin 'kchmck/vim-coffee-script'
-
 """"""" Handlebars
 Plugin 'nono/vim-handlebars'
 
@@ -79,8 +77,6 @@ Plugin 'scrooloose/syntastic' " Syntax highlighting
   let g:syntastic_mode_map = { "mode": "active",
                              \ "passive_filetypes": ["java"] }
 
-Plugin 'christoomey/vim-tmux-navigator'  " Navigate between tmux panes and vim splits seamlessly
-Plugin 'tpope/vim-fugitive'              " git support from dat tpope
 Plugin 'airblade/vim-gitgutter'
 """"" End Utilities ====================
 
@@ -94,7 +90,6 @@ Plugin 'bling/vim-airline'       " UI statusbar niceties
   let g:airline_powerline_fonts = 1
 Plugin 'chriskempson/base16-vim' " base16 theme
 Plugin 'dandorman/vim-colors'
-Plugin 'roman/golden-ratio'
 """"" End UI Plugins ===================
 
 """"" Code Navigation ===============
@@ -127,6 +122,7 @@ filetype plugin indent on
 """ End setup Vundle ===================
 
 """ UI Tweaks ==========================
+set relativenumber
 set number " line numbering
 set t_Co=256 " Force 256 colors
 
@@ -213,3 +209,6 @@ set exrc   " enable per-directory .vimrc files
 set secure " disable unsafe commands in local .vimrc files
 """ End Project-Specific Items =========
 
+""" MacVim setting =============
+set guifont=Hack:h14
+set clipboard=unnamed
