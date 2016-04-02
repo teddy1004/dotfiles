@@ -1,0 +1,10 @@
+'body':
+  'ctrl-x h': 'pane:split-left-and-copy-active-item'
+  'ctrl-x l': 'pane:split-right-and-copy-active-item'
+  'ctrl-x j': 'pane:split-down-and-copy-active-item'
+  'ctrl-x k': 'pane:split-up-and-copy-active-item'
+
+  'ctrl-w h': 'window:focus-pane-on-left'
+  'ctrl-w l': 'window:focus-pane-on-right'
+  'ctrl-w j': 'window:focus-pane-on-down'
+  'ctrl-w k': 'window:focus-pane-on-up'
