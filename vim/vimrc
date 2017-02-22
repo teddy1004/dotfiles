@@ -11,74 +11,103 @@ call vundle#begin()
 " let Vundle manage Vundle.  Required
 Plugin 'gmarik/Vundle.vim'
 
-""""""" Utilities
-"Plugin 'vim-scripts/taglist.vim'
-Plugin 'rizzatti/dash.vim' " Dash Integration
-
-""""" Filetypes ========================
-Plugin 'Valloric/YouCompleteMe'
-
 """"""" Ruby
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-endwise'
 
-"lint
-Plugin 'scrooloose/syntastic'
-
-""""""" Elixir
+"""""" Elixir && Erlang
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
+ let g:alchemist_tag_disable = 1
+Plugin 'vim-erlang/vim-erlang-runtime'
 
 """"""" Golang
 Plugin 'fatih/vim-go'
+  let g:go_disable_autoinstall = 0
+  " Highlight
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_highlight_structs = 1
+  let g:go_highlight_operators = 1
+
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'jodosha/vim-godebug'
 
 """"""" JavaScript
-"Plugin 'Shutnik/jshint2.vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 """"""" CSS
 Plugin 'JulesWang/css.vim'
 
+""""" Filetypes ========================
+"Plugin 'Shougo/neocomplete.vim'
+  ""Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+  "" Disable AutoComplPop.
+  "let g:acp_enableAtStartup = 0
+  "" Use neocomplete.
+  "let g:neocomplete#enable_at_startup = 1
+  "" Use smartcase.
+  "let g:neocomplete#enable_smart_case = 1
+Plugin 'Valloric/YouCompleteMe'
+
+"""""" Development
+Plugin 'sheerun/vim-polyglot'
+Plugin 'ludovicchabant/vim-gutentags'
+ let g:gutentags_cache_dir = '~/.tags_cache'
+Plugin 'benekastah/neomake'
+ autocmd BufWritePost * Neomake
+
+""""""" lint
+Plugin 'scrooloose/syntastic'
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_javascript_checkers = ['eslint', 'jsxhint']
+
 """"" Utilities ========================
-Plugin 'honza/vim-snippets'
 Plugin 'mileszs/ack.vim'
-  let g:ackprg = 'ag --nogroup --nocolor --column'
+ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'junegunn/vim-easy-align'
 """"" End Utilities ====================
 
 """"" UI Plugins =======================
 Plugin 'morhetz/gruvbox'
+Plugin 'joshdick/onedark.vim'
 """"" End UI Plugins ===================
 
 """"" UI Plugins =======================
 Plugin 'bling/vim-airline'       " UI statusbar niceties
-  set laststatus=2               " enable airline even if no splits
-  let g:airline_theme='gruvbox'
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#hunks#enabled = 0
-  let g:airline#extensions#whitespace#enabled = 0
-  let g:airline_powerline_fonts = 1
+ set laststatus=2               " enable airline even if no splits
+ let g:airline_theme='base16'
+ let g:airline_powerline_fonts = 1
+ let g:airline#extensions#hunks#enabled = 0
+ let g:airline#extensions#whitespace#enabled = 0
+ let g:airline_powerline_fonts = 1
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'dandorman/vim-colors'
 """""" End UI Plugins ===================
 
 """""" Code Navigation ===============
 Plugin 'kien/ctrlp.vim'
-  let g:ctrlp_match_window_bottom = 1    " Show at bottom of window
-  let g:ctrlp_working_path_mode = 'ra'   " Our working path is our VCS project or the current directory
-  let g:ctrlp_mru_files = 1              " Enable Most Recently Used files feature
-  let g:ctrlp_jump_to_buffer = 2         " Jump to tab AND buffer if already open
-  let g:ctrlp_open_multiple_files = 'vr' " opens multiple selections in vertical splits to the right
-  let g:ctrlp_arg_map = 0
-  let g:ctrlp_dotfiles = 0               " do not show (.) dotfiles in match list
-  let g:ctrlp_showhidden = 0             " do not show hidden files in match list
-  let g:ctrlp_max_height = 40            " restrict match list to a maxheight of 40
-  let g:ctrlp_use_caching = 0            " don't cache, we want new list immediately each time
-  let g:ctrlp_max_files = 0              " no restriction on results/file list
-  let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/](node_modules|\.(git|hg|svn|gitkeep))$',
-        \ 'file': '\v\.(exe|so|dll|log|gif|jpg|jpeg|png|psd|DS_Store|ctags|gitattributes)$'
-        \ }
+ let g:ctrlp_match_window_bottom = 1    " Show at bottom of window
+ let g:ctrlp_working_path_mode = 'ra'   " Our working path is our VCS project or the current directory
+ let g:ctrlp_mru_files = 1              " Enable Most Recently Used files feature
+ let g:ctrlp_jump_to_buffer = 2         " Jump to tab AND buffer if already open
+ let g:ctrlp_open_multiple_files = 'vr' " opens multiple selections in vertical splits to the right
+ let g:ctrlp_arg_map = 0
+ let g:ctrlp_dotfiles = 0               " do not show (.) dotfiles in match list
+ let g:ctrlp_showhidden = 0             " do not show hidden files in match list
+ let g:ctrlp_max_height = 40            " restrict match list to a maxheight of 40
+ let g:ctrlp_use_caching = 0            " don't cache, we want new list immediately each time
+ let g:ctrlp_max_files = 0              " no restriction on results/file list
+ let g:ctrlp_custom_ignore = {
+       \ 'dir':  '\v[\/](node_modules|\.(git|hg|svn|gitkeep))$',
+       \ 'file': '\v\.(exe|so|dll|log|gif|jpg|jpeg|png|psd|DS_Store|ctags|gitattributes)$'
+       \ }
 
 Plugin 'scrooloose/nerdtree'
 
@@ -95,46 +124,38 @@ filetype plugin indent on
 """ End setup Vundle ===================
 
 """ UI Tweaks ==========================
-"""set relativenumber
-set number " line numbering
-set t_Co=256 " Force 256 colors
-
-set background=dark
-syntax enable
-colorscheme gruvbox
-set enc=utf-8
-set term=screen-256color
-let $TERM='screen-256color'
-
-" Highlighting line or number follows....
-"set cul " highlight current line
-
-" Highlight current column
-"set cuc
-
-" Start scrolling 3 lines before the border
-set scrolloff=3
-
-" Whitespace stuff
-set tabstop=2
+syntax on
+set regexpengine=1
+set encoding=utf-8
 set shiftwidth=2
+set tabstop=2
 set softtabstop=2
 set expandtab
+set number
+"set relativenumber
+set sm "括號配對情況
+set selection=inclusive
+set wildmenu
+set laststatus=2
+set vb "turn off visual bell
+syntax on
 
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
+set cursorline
+"set cursorcolumn
 
-""" Auto Commands ======================
-""""" Normalization ====================
-" Delete trailing white space on save
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-au BufWrite * silent call DeleteTrailingWS()
-""""" End Normalization ================
-""" End Auto Commands ==================
+if (has("gui_running"))
+  set nowrap
+  set guioptions-=b
+  set guioptions-=r
+  set guioptions-=L
+  set background=dark
+  "colorscheme gruvbox
+  colorscheme onedark
+  set guioptions-=T
+  set guioptions-=m
+  set guifont=hack:h14
+else
+  set wrap
+  set background=dark
+  colorscheme onedark
+endif
